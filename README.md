@@ -23,7 +23,7 @@ $ azk agent status
 3. Clone the application locally:
 
 ```bash
-$ git clone http://github.com/azukiapp/node-example
+$ git clone http://github.com/azukiapp-samples/node-example
 ```
 
 4. Create the initial `Azkfile.js`:
