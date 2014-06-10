@@ -63,16 +63,16 @@ We can now add a database to the application in order to demonstrate how to make
 
 ```js
 ...
-   'node-example': {
-       depends: ["db"], // Adicione o banco de dados como dependencia
-       ...
-   },
+  'node-example': {
+      depends: ["redis"], // Adicione o banco de dados como dependencia
+      ...
+  },
 ...
-   // Acrecente o banco de dados como um sistema
-   db: {
-      image: "dockerfile/redis",
-      persistent_folders: [ "/data" ]
-   }
+  // Acrecente o banco de dados como um sistema
+  redis: {
+    image: "dockerfile/redis",
+    persistent_folders: [ "/data" ]
+  }
 ...
 ```
 
@@ -85,7 +85,7 @@ $ azk shell -c "npm install redis --save"
 3. Start the database:
 
 ```bash
-$ azk start -s db
+$ azk start -s redis
 ```
 
 4. Reload the application so that it can recognize the database:
