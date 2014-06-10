@@ -70,7 +70,8 @@ We can now add a database to the application in order to demonstrate how to make
 ...
    // Acrecente o banco de dados como um sistema
    db: {
-      image: "dockerfile/redis"
+      image: "dockerfile/redis",
+      persistent_folders: [ "/data" ]
    }
 ...
 ```
