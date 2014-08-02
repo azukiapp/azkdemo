@@ -50,7 +50,7 @@ $ open http://node-example.dev.azk.io
 7. Scale the application to 5 instances:
 
 ```bash
-$ azk scale --instances 5
+$ azk scale node-example 5
 ```
 
 8. Please note that when you repeatedly reload http://node-example.dev.azk.io, different ids are displayed. This demosntrates that the http balancer is hitting different instances of the application. 
@@ -79,20 +79,20 @@ We can now add a database to the application in order to demonstrate how to make
 2. Install the required node.js library to use redis:
 
 ```bash
-$ azk shell -c "npm install redis --save"
+$ azk shell node-example -c "npm install redis --save"
 ```
 
 3. Start the database:
 
 ```bash
-$ azk start -s redis
+$ azk start redis
 ```
 
 4. Reload the application so that it can recognize the database:
 
 ```bash
-$ azk stop
-$ azk start
+$ azk stop node-example
+$ azk start node-example
 ```
 
 5. By realoading http://node-example.dev.azk.io it is possible to see that an access counter is displayed and that it refers to to the connction between the application and the database (which together make a system of systems).

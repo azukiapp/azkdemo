@@ -3,10 +3,10 @@ var fs      = require('fs');
 var client;
 
 // Constants
-var PORT     = process.env.PORT || 3000;
+var PORT     = process.env.HTTP_PORT || 3000;
 var AZK_NAME = process.env.AZK_NAME;
-var REDIS_PORT = process.env.REDIS_PORT;
-var REDIS_HOST = process.env.REDIS_HOST;
+var REDIS_PORT = process.env.REDIS_6379_PORT;
+var REDIS_HOST = process.env.REDIS_6379_HOST;
 
 if (REDIS_PORT && REDIS_HOST) {
   var redis = require('redis');
@@ -56,3 +56,4 @@ app.get('/', function (req, res) {
 
 app.listen(PORT);
 console.log('Service %s is already done', AZK_NAME);
+console.log(process.env);
