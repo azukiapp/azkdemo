@@ -4,7 +4,7 @@ With this simple node.js application we demonstrate how powerful and yet very ea
 
 # The Application
 
-This is a very simple node.js applicatiion. It uses the express.js web framework to serve web pages in which the `azk` logo is displayed along with the value of the `AZK_NAME` environment variable.
+This is a very simple node.js application. It uses the express.js web framework to serve web pages in which the `azk` logo is displayed along with the value of the `AZK_NAME` environment variable.
 
 Also, whenever the `REDIS_PORT` and `REDIS_HOST` variables are used, a simple access counter is automatically loaded.
 
@@ -44,7 +44,7 @@ $ azk status
 6. Access the application through the `azk` built-in balancer:
 
 ```bash
-$ open http://node-example.dev.azk.io
+$ open http://node-example.azk.dev
 ```
 
 7. Scale the application to 5 instances:
@@ -53,22 +53,22 @@ $ open http://node-example.dev.azk.io
 $ azk scale node-example 5
 ```
 
-8. Please note that when you repeatedly reload http://node-example.dev.azk.io, different ids are displayed. This demosntrates that the http balancer is hitting different instances of the application. 
+8. Please note that when you repeatedly reload http://node-example.azk.dev, different ids are displayed. This demosntrates that the http balancer is hitting different instances of the application. 
 
 # Scenario 2
 
-We can now add a database to the application in order to demonstrate how to make they communicate with each other (and make a system of systems):
+We can now add a database to the application in order to demonstrate how to make them communicate with each other (and make a [system of systems](http://en.wikipedia.org/wiki/System_of_systems)):
 
 1. Edit the `Azkfile.js` file and make the changes below:
 
 ```js
 ...
   'node-example': {
-      depends: ["redis"], // Adicione o banco de dados como dependencia
+      depends: ["redis"], // Add the database as a dependency
       ...
   },
 ...
-  // Acrecente o banco de dados como um sistema
+  // Add the database as a system
   redis: {
     image: "dockerfile/redis",
     persistent_folders: [ "/data" ]
@@ -95,7 +95,7 @@ $ azk stop node-example
 $ azk start node-example
 ```
 
-5. By realoading http://node-example.dev.azk.io it is possible to see that an access counter is displayed and that it refers to to the connction between the application and the database (which together make a system of systems).
+5. By reloading http://node-example.azk.dev it is possible to see that an access counter is displayed and that it refers to to the connection between the application and the database (which together make a [system of systems](http://en.wikipedia.org/wiki/System_of_systems)).
 
 ## License
 
