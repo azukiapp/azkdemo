@@ -1,0 +1,13 @@
+{
+  "name": "azkdemo",
+  "version": "0.0.1",
+  "description": "azk getting started application",
+  "author": "Everton Ribeiro <everton@azukiapp.com>",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "3.4.4"
+  },
+  "license": "BSD"
+}
