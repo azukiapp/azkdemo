@@ -186,6 +186,7 @@ p.copyright {
 @media (max-width: 900px) {
   .logo {
     width: 90px;
+    height: 93px;
   }
 
   .social-medias { padding-left: 17px; }
@@ -211,6 +212,7 @@ p.copyright {
 @media (max-width: 800px) {
   .logo {
     width: 150px;
+    height: 155px;
   }
   .sidebar {
     margin-top:30px;
