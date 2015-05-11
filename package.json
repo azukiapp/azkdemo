@@ -3,10 +3,12 @@
   "version": "0.0.1",
   "description": "azk getting started application",
   "author": "Everton Ribeiro <everton@azukiapp.com>",
-  "contributors": [{
-    "name" : "Marcus Gadbem",
-    "email" : "marcus@azukiapp.com"
-  }],
+  "contributors": [
+    {
+      "name": "Marcus Gadbem",
+      "email": "marcus@azukiapp.com"
+    }
+  ],
   "scripts": {
     "start": "nodemon ./index.js"
   },
