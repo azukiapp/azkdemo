@@ -3,11 +3,21 @@
   "version": "0.0.1",
   "description": "azk getting started application",
   "author": "Everton Ribeiro <everton@azukiapp.com>",
+  "contributors": [{
+    "name" : "Marcus Gadbem",
+    "email" : "marcus@azukiapp.com"
+  }],
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon ./index.js"
   },
   "dependencies": {
-    "express": "3.4.4"
+    "express": "3.4.4",
+    "express-handlebars": "^2.0.1",
+    "locale": "0.0.20",
+    "redis": "^0.12.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.3.7"
   },
   "license": "BSD"
 }

@@ -1,10 +1,13 @@
-var express = require('express');
-var fs      = require('fs');
-var url     = require('url');
+var express   = require('express');
+var url       = require('url');
 
 // Configs
-var PORT     = process.env.HTTP_PORT || 3000;
-var AZK_UID  = process.env.AZK_UID;
+var PORT      = process.env.HTTP_PORT || 3000;
+var AZK_UID   = process.env.AZK_UID;
+var azkInstanceData = {
+  seq: null,    // instance sequence
+  uid: AZK_UID  // instance ID
+};
 
 // Database is configured
 var client;
@@ -14,45 +17,47 @@ if (process.env.DATABASE_URL) {
   client = redis.createClient(options.port, options.hostname);
 }
 
-function render(counter) {
-  var body = '';
-  body += '<center>';
-  body += '  <img src="/static/logo.png" />';
-  body += '  <h2>instance id: ' + AZK_UID + '</h2>';
-
-  if (counter) {
-    body += '  <h3>Redis connected!!!</h3>';
-    body += '  <h4>Views: ' + counter + '</h4>';
-  }
-
-  body += '</center>';
-  return body;
-}
-
-// App
+// Create Express app
 var app = express();
 
-// simple logger
-app.use(function(req, res, next){
-  console.log('%s: %s %s', AZK_UID, req.method, req.url);
-  next();
-});
+// Config app with simple logger middleware,
+// simples locale, view engine and static assets
+require('./config')(app);
 
-app.use("/static", express.static(__dirname + '/public'));
+// Which layout handlebars will render
+var layout;
 
-app.get('/', function (req, res) {
-  // Render with counter
+// Route
+app.get('/', function(req, res) {
+  layout = (req.locale == 'pt_BR') ? 'index_pt_br' : 'index_en';
+
+  // fill `seq` with the container that processed the request
+  azkInstanceData.seq = process.env.AZK_SEQ;
+
   if (client) {
-    client.get("counter", function(err, counter) {
+    // if database is plugged
+    client.get('counter', function(err, counter) {
       if (err) console.error(err);
       counter = parseInt(counter || 0) + 1;
       client.set('counter', counter, function(err) {
         if (err) console.error(err);
-        res.send(render(counter));
+        res.render(layout, {
+          client: true,
+          counter: counter,
+          azkData: azkInstanceData,
+          step: 'commands'
+        });
       })
     });
   } else {
-    res.send(render());
+    // database is missing
+    res.render(layout, {
+      azkData: azkInstanceData,
+      client: false,
+      counter: false,
+      step: 'database'
+    });
+
   }
 });
 

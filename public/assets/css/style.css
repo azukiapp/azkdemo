@@ -1,0 +1,222 @@
+* { }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  line-height: 24px;
+  color: #585858;
+}
+
+a {
+  color: #31b4ce;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #282a37;
+}
+
+pre.request {
+  color: silver;
+}
+
+.instance-id,
+  .counter,
+  .visitor {
+  color: #31b4ce;
+}
+
+/* steps */
+
+ol.steps {
+  margin: 40px 0 60px;
+  padding:0;
+  text-align: center;
+}
+
+ol.steps li {
+  list-style-type: none;
+  display: inline-block;
+}
+
+.step-btn {
+  display: block;
+  border: 1px solid #38bcd4;
+  color: #38bcd4;
+  font-size: 26px;
+  font-weight: 100;
+  padding: 12px;
+  margin-right:15px;
+  margin-bottom:15px;
+  border-radius: 4px;
+}
+
+.step-btn--active {
+  background: #38bcd4;
+  color: #ffffff;
+}
+
+.step-btn--disabled {
+  color: rgba(56,188,212,.4);
+  border: 1px solid rgba(56,188,212,.4);
+}
+
+.h-line {
+  border-bottom: 1px solid #ccc;
+  height: 0;
+  margin: 20px 0;
+}
+
+.cmd-line {
+  margin-top: 20px;
+}
+
+.cmd-line li {
+  margin: 0;
+  padding: 0;
+}
+
+.cmd-line li pre {
+  background-color: #f7f7f7;
+  border-radius: 3px;
+  padding: 10px;
+}
+
+.cmd-line--symbol {
+  color: #31b4ce;
+}
+
+.cmd-line--option {
+  color: gray;
+}
+
+.container {
+  margin: 0 auto;
+  margin-top: 45px;
+  max-width: 560px;
+}
+
+.sidebar {
+  position: fixed;
+  top: 30px; left: 30px;
+}
+
+.logo {
+  margin: 0 auto;
+  width: 122px;
+}
+
+.azk-name {
+  background: #31b4ce;
+  border-top-left-radius: 999em;
+  border-top-right-radius: 999em;
+  border-bottom-right-radius: 999em;
+  border-bottom-left-radius: 999em;
+  color: #fff;
+  display:inline-block;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px;
+  text-transform: lowercase;
+}
+
+.footer {
+  margin-top:40px;
+  text-align: center;
+}
+
+p.copyright {
+  margin:30px auto;
+  color: grey;
+  text-align: center;
+}
+
+.azuki {
+  display:inline-block;
+  padding:12px 4px 6px;
+  background: #3c4959;
+  color: #fff;
+  font-weight: bold;
+  text-transform: lowercase;
+  margin-bottom:15px;
+}
+
+.social-medias { padding-left: 27px; }
+
+.social-medias li { list-style: none; }
+
+.icon {
+  background: url('/static/assets/images/sprite-social-media.png');
+  background-size: 300px 107px;
+  display:block;
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+}
+
+.icon--circle {
+  /*border: 1px solid #929294;*/
+  border: 1px solid rgba(146,146,148,.3);
+  border-top-left-radius: 999em;
+  border-top-right-radius: 999em;
+  border-bottom-right-radius: 999em;
+  border-bottom-left-radius: 999em;
+}
+
+.icon--link { background-position: -8px 0px; }
+.icon--github { background-position: -162px 0px; }
+.icon--facebook { background-position: -85px 0px; }
+.icon--twitter { background-position: -540px 0px; }
+
+.icon--link:hover { border-color: #3c4959; background-position: -8px -50px; }
+.icon--github:hover { border-color: #000000; background-position: -162px -50px; }
+.icon--facebook:hover { border-color: #425f9b; background-position: -85px -50px; }
+.icon--twitter:hover { border-color: #55acef; background-position: -540px -50px; }
+
+/* Media Queries */
+
+@media (max-width: 900px) {
+  .logo {
+    width: 90px;
+  }
+
+  .social-medias { padding-left: 17px; }
+
+  .icon {
+    width: 40px;
+    height: 40px;
+    margin: 7px;
+  }
+
+  .icon--link { background-position: -14px -6px; }
+  .icon--github { background-position: -167px -6px; }
+  .icon--facebook { background-position: -89px -7px; }
+  .icon--twitter { background-position: -545px -7px; }
+
+  .icon--link:hover { background-position: -14px -56px; }
+  .icon--github:hover {  background-position: -167px -56px; }
+  .icon--facebook:hover { background-position: -89px -58px; }
+  .icon--twitter:hover { background-position: -545px -58px; }
+
+}
+
+@media (max-width: 800px) {
+  .logo {
+    width: 150px;
+  }
+  .sidebar {
+    margin-top:30px;
+    text-align:center;
+    position: inherit;
+  }
+  ul.social-medias { display: none; }
+}
+
