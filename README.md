@@ -1,4 +1,4 @@
-# azk getting started demo application
+# azk Getting Started Demo Application
 
 [http://docs.azk.io](http://docs.azk.io)
 
