@@ -141,11 +141,10 @@ p.copyright {
 
 .azuki {
   display:inline-block;
-  padding:12px 4px 6px;
+  padding:12px 5px 12px;
   background: #3c4959;
   color: #fff;
   font-weight: bold;
-  text-transform: lowercase;
   margin-bottom:15px;
 }
 
