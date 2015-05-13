@@ -32,7 +32,6 @@
     </div>
 
     <div class="container">
-      <pre class="request">Esta requisição foi processada pela instância <strong class="counter">#{{{ azkData.seq }}}</strong> (ID: <strong class="instance-id">{{{azkData.uid}}}</strong>)</pre>
       {{#if client}}
         <h1>Hello world, visitante <span class="visitor">#{{counter}}</span>!</h1>
       {{^}}
@@ -61,8 +60,12 @@
         {{> commands_pt_br }}
       {{/unless}}
 
+      <div class="h-line"> &nbsp; </div>
+
+      <pre class="request">Esta requisição foi processada pela instância <strong class="counter">#{{{ azkData.seq }}}</strong> (ID: <strong class="instance-id">{{{azkData.uid}}}</strong>)</pre>
+
+      <div class="h-line"> &nbsp; </div>
       <div class="footer">
-        <div class="h-line"> &nbsp; </div>
         <p class="copyright"><span class="azuki">Azuki</span></p>
       </div>
     </div>
