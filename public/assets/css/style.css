@@ -221,3 +221,7 @@ p.copyright {
   ul.social-medias { display: none; }
 }
 
+.send li {
+  list-style: none;
+  min-height: 40px;
+}

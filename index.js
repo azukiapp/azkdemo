@@ -22,7 +22,8 @@ var app = express();
 
 // Config app with simple logger middleware,
 // simples locale, view engine and static assets
-require('./config')(app);
+require('./lib/config')(app);
+var server = require('./lib/services')(app);
 
 // Which layout handlebars will render
 var layout;
@@ -43,6 +44,7 @@ app.get('/', function(req, res) {
         if (err) console.error(err);
         res.render(layout, {
           client: true,
+          services: process.env.SERVICES_ENABLE ? true : false,
           counter: counter,
           azkData: azkInstanceData,
           step: 'commands'
@@ -55,11 +57,11 @@ app.get('/', function(req, res) {
       azkData: azkInstanceData,
       client: false,
       counter: false,
+      services: false,
       step: 'database'
     });
-
   }
 });
 
-app.listen(PORT);
+server.listen(PORT);
 console.log('Service %s is already done in port: %s', AZK_UID, PORT);

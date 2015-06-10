@@ -1,3 +1,5 @@
 node_modules
 .npm
 .bash_history
+Azkfile.js
+.azk

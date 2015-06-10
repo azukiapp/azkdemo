@@ -1,0 +1,22 @@
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var ajaxUrl = "/mail";
+  $(document).ready(function() {
+    $('#myform').submit(function( event ) {
+      $.post( "/mail", $('#myform').serialize())
+        .then(function(result) {
+          window.alert(result);
+        }, function(err) {
+          window.alert(result);
+        });
+      event.preventDefault();
+    });
+
+    var socket = io.connect();
+    socket.on('msgs', function(data) {
+      console.log(data);
+      data = $('#emails_received').val() + "\n" + data;
+      $('#emails_received').val(data);
+    });
+  });
+</script>
