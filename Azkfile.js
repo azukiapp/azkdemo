@@ -22,7 +22,11 @@ systems({
     },
     scalable: {"default": 1},
     http: {
-      domains: [ "#{system.name}.#{azk.default_domain}" ]
+      domains: [
+        "#{env.HOST_DOMAIN}",
+        "#{env.HOST_IP}",
+        "#{system.name}.#{azk.default_domain}"
+      ]
     },
     ports: {
       // exports global variables
@@ -34,6 +38,34 @@ systems({
       // if you're setting it in a .env file
       NODE_ENV: "dev",
       PORT: "3000",
+    },
+  },
+  // **ADD THE FOLLOWING, OUTSIDE OF THE AZKDEMO SYSTEM:**
+  // Adds the "redis" system
+  redis: {
+    image: { docker: "redis" },
+    export_envs: {
+      "DATABASE_URL": "redis://#{net.host}:#{net.port[6379]}"
+    }
+  },
+  /* Deploy */
+  // to deploy, run: `azk deploy`
+  deploy: {
+    image: {"docker": "azukiapp/deploy-digitalocean"},
+    mounts: {
+      "/azk/deploy/src"    : path("."),
+      "/azk/deploy/.ssh"   : path("#{env.HOME}/.ssh"),
+      "/azk/deploy/.config": persistent("deploy-config"),
+    },
+    scalable: {"default": 0, "limit": 0},
+    envs: {
+      BOX_NAME                 : "azkdemo",
+      BOX_IMAGE                : "14665943",
+      // HOST_DOMAIN              : "demo.azk.io",
+      REMOTE_PROJECT_PATH_ID   : "azkdemo",
+      ENV_FILE                 : ".env",
+      GIT_REF                  : "azkfile",
+      DISABLE_ANALYTICS_TRACKER: true,
     },
   },
 });
