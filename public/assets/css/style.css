@@ -231,7 +231,7 @@ p.copyright {
 }
 
 .gallery__about p {
-  font-family: ProximaNova-Regular;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-size: 16px;
   color: #666666;
 }
@@ -265,7 +265,7 @@ p.copyright {
 }
 
 .gallery__lead {
-  font-family: ProximaNova-Light;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-size: 20px;
   color: #666666;
   line-height: 34px;
@@ -273,14 +273,16 @@ p.copyright {
 
 .gallery__item__project-name {
   margin:0;
-  font-family: ProximaNova-Regular;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 100;
   font-size: 20px;
   color: rgba(0,0,0,.7);
   line-height: 24px;
 }
 
 .gallery__item__project-lang {
-  font-family: Helvetica-Bold;
+  font-family: Helvetica;
+  font-weight: 300;
   font-size: 12px;
   color: rgba(0,0,0,.4);
   line-height: 14px;
@@ -297,7 +299,7 @@ p.copyright {
 }
 
 .gallery__item__project-author {
-  font-family: HelveticaNeue;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-size: 14px;
   color: rgba(0,0,0,.3);
   line-height: 16px;
@@ -328,7 +330,7 @@ p.copyright {
 .gallery__item__project-description p {
   color: rgba(0,0,0,0.7);
   line-height: 22px;
-  font-family: ProximaNova-Regular;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   position: relative;
   word-break: break-word;
   text-align:center;
