@@ -5,7 +5,7 @@
 systems({
   azkdemo: {
     // Dependent systems
-    depends: [],
+    depends: ["redis"],
     // More images:  http://images.azk.io
     image: {"docker": "azukiapp/node"},
     // Steps to execute before running instances
