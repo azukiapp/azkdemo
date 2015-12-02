@@ -1,4 +1,62 @@
+<div class="database">
+<h1>Adicione o banco de dados</h1>
+<p>Esta aplicação possui suporte a um simples contador de visitas mas, para vê-lo, é necessário adicionar um banco de dados Redis.</p>
+<p>Você pode plugar um banco de dados <a href="http://docs.azk.io/en/getting-started/database.html" target="_blank">seguindo estas instruções</a>.</p>
 
-      <h2>1. Adicione o banco de dados</h2>
-      <p>Esta aplicação possui suporte a um simples contador de visitas mas, para vê-lo, é necessário adicionar um banco de dados Redis.</p>
-      <p>Você pode plugar um banco de dados <a href="http://docs.azk.io/en/getting-started/database.html" target="_blank">seguindo estas instruções</a>.</p>
+<ol>
+  <li>Adicionar o redis no azkfile</li>
+  <li>Iniciar o redis (azk start redis)</li>
+  <li>Adicionar package 'redis' ao azkdemo  (azk shell azkdemo; npm i redis --save)</li>
+  <li>Adicionar redis como depends do azkdemo</li>
+  <li>Restarta o azkdemo</li>
+</ol>
+
+<div class="h-line"> &nbsp; </div>
+
+<h2>1. Adicionando redis ao Azkfile.js</h2>
+<p> Add the following outside of <strong>azkdemo</strong> system:</p>
+
+<pre><code> redis: {
+    image: { docker: "redis" },
+    export_envs: {
+      "DATABASE_URL": "redis://#{net.host}:#{net.port[6379]}"
+    }
+  }
+</code></pre>
+
+<div class="h-line"> &nbsp; </div>
+
+<h2>2. Iniciando o Redis</h2>
+<pre> <span class="cmd-line--symbol">$</span> azk start <span class="cmd-line--option">redis</span></pre>
+
+<div class="h-line"> &nbsp; </div>
+
+<h2>3. Adicionar package redis a aplicação</h2>
+<pre>
+  <span class="cmd-line--symbol">$</span> azk shell <span class="cmd-line--option">azkdemo</span>
+  <span class="cmd-line--symbol">#</span> npm install <span class="cmd-line--option">redis</span> --save
+</pre>
+
+<div class="h-line"> &nbsp; </div>
+
+<h2>4. Adicionar redis como depends a aplicação no Azkfile</h2>
+<pre><code> systems({
+    azkdemo: {
+      // Dependent systems
+      depends: ["redis"], // <= add the redis system
+      // ...
+    },
+    redis: {
+      // ...
+    }
+  });
+</code></pre>
+
+<div class="h-line"> &nbsp; </div>
+
+<h2>5. Restart a aplicação</h2>
+<pre>
+  <span class="cmd-line--symbol">$</span> azk restart <span class="cmd-line--option">azkdemo</span>
+</pre>
+
+</div>

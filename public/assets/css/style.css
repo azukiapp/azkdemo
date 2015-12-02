@@ -11,7 +11,7 @@ body {
 }
 
 a {
-  color: #31b4ce;
+  color: #428BCA;
   text-decoration: none;
 }
 
@@ -20,17 +20,17 @@ a:hover {
 }
 
 a:visited {
-  color: #9BD7E4;
+  color: #2a6496;
 }
 
 pre.request {
-  color: silver;
+  color: grey;
 }
 
 .instance-id,
   .counter,
   .visitor {
-  color: #31b4ce;
+  color: #428BCA;
 }
 
 /* steps */
@@ -48,8 +48,8 @@ ol.steps li {
 
 .step-btn {
   display: block;
-  border: 1px solid #38bcd4;
-  color: #38bcd4;
+  border: 1px solid #428BCA;
+  color: #428BCA;
   font-size: 26px;
   font-weight: 100;
   padding: 12px;
@@ -59,7 +59,7 @@ ol.steps li {
 }
 
 .step-btn--active {
-  background: #38bcd4;
+  background: #428BCA;
   color: #ffffff;
 }
 
@@ -83,14 +83,14 @@ ol.steps li {
   padding: 0;
 }
 
-.cmd-line li pre {
+.cmd-line li pre, .deployment pre, .database pre {
   background-color: #f7f7f7;
   border-radius: 3px;
   padding: 10px;
 }
 
 .cmd-line--symbol {
-  color: #31b4ce;
+  color: #428BCA;
 }
 
 .cmd-line--option {
@@ -114,7 +114,7 @@ ol.steps li {
 }
 
 .azk-name {
-  background: #31b4ce;
+  background: #428BCA;
   border-top-left-radius: 999em;
   border-top-right-radius: 999em;
   border-bottom-right-radius: 999em;

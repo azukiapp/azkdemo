@@ -1,0 +1,107 @@
+
+<!-- 
+      <h2>Que tal tentar alguns outros comandos?</h2>
+      <ul class="cmd-line">
+        <li>
+          <p>Mostra logs dos containers (<a href="http://docs.azk.io/pt-BR/reference/cli/logs.html" target="_blank">Ver doc</a>)</p>
+          <pre><span class="cmd-line--symbol">$</span> azk logs <span class="cmd-line--option">[system name]</span> <span class="cmd-line--option">[--follow]</span></pre>
+        </li>
+        <li>
+          <p>Aumenta/diminui um sistema a uma [quantidade]  de instâncias (<a href="http://docs.azk.io/pt-BR/reference/cli/scale.html" target="_blank">Ver docs</a>)</p>
+          <pre><span class="cmd-line--symbol">$</span> azk scale <span class="cmd-line--option">[system name]</span> <span class="cmd-line--option">[quantity]</span></pre>
+        </li>
+        <li>
+          <p>Exibe o status da instância ou de todos os sistemas a partir do Azkfile.js encontrado (<a href="http://docs.azk.io/pt-BR/reference/cli/status.html" target="_blank">See ver</a>)</p>
+          <pre><span class="cmd-line--symbol">$</span> azk status</pre>
+        </li>
+        <li>
+          <p>Para visualizar todos os comandos e opções (<a href="http://docs.azk.io/pt-BR/reference/cli/help.html" target="_blank">Ver docs</a>)</p>
+          <pre><span class="cmd-line--symbol">$</span> azk help</pre>
+        </li>
+      </ul>
+
+      <div class="h-line"> &nbsp; </div>
+ -->
+<div class="deployment">
+
+<h2>1. Configurando chaves SSH locais</h2>
+<p>O primeiro passo é configurar as chaves SSH em sua máquina. Elas vão ser úteis para fazermos a conexão ao droplet e para enviarmos os arquivos de seu projeto. Se você ainda não tem chaves SSH criadas em sua máquina (ou não tem certeza sobre isso), siga os passos 1 e 2 <a href="https://help.github.com/articles/generating-ssh-keys/" target="_blank">deste tutorial</a>.</p>
+
+<div class="h-line"> &nbsp; </div>
+
+<h2>2. Adicionar deploy ao Azkfile</h2>
+<pre><code> systems({
+    // ...
+
+    deploy: {
+      image: {"docker": "azukiapp/deploy-digitalocean"},
+      mounts: {
+        "/azk/deploy/src" :    path("."),
+        "/azk/deploy/.ssh":    path("#{env.HOME}/.ssh"),
+        "/azk/deploy/.config": persistent("deploy-config"),
+      },
+      scalable: {"default": 0, "limit": 0},
+    },
+    envs: {
+      // Adicione aqui as opções de configuração do deploy
+    }
+  });
+</code></pre>
+
+<div class="h-line"> &nbsp; </div>
+
+<h2>3. Adicionar domínios a aplicação</h2>
+<p>Depois, adicione os seguintes http.domains ao seu sistema principal:</p>
+
+<pre><code> systems({
+    azkdemo: {
+      // ...
+      http: {
+        domains: [
+          "#{env.HOST_DOMAIN}",
+          "#{env.HOST_IP}"
+          // ...
+        ]
+      },
+    },
+
+    // ...
+  });
+</code></pre>
+
+<div class="h-line"> &nbsp; </div>
+
+<h2>4. Gerar Token na DigitalOcean</h2>
+<p>Obtenha uma <a href="https://cloud.digitalocean.com/settings/applications" target="_blank">chave de acesso</a> (<em>personal access token</em> - precisa estar logado) da DigitalOcean.</p>
+
+<div class="h-line"> &nbsp; </div>
+
+<h2>5. Configurar variáveis de ambiente</h2>
+<p>Coloque-o em um arquivo chamado .env:</p>
+<pre> <span class="cmd-line--symbol">$</span> echo "DEPLOY_API_TOKEN=<span class="cmd-line--option">COLOQUE-SEU-TOKEN-AQUI</span>" >> .env</pre>
+
+<div class="h-line"> &nbsp; </div>
+
+<h2>6. Run deploy</h2>
+<pre> <span class="cmd-line--symbol">$</span> azk deploy</pre>
+
+</div>
+
+<!-- 
+<pre><code>
+</code></pre>
+<pre> <span class="cmd-line--symbol">$</span> azk start <span class="cmd-line--option">redis</span></pre>
+
+      <h2>Deseja ver alguns exemplos de aplicação mais complexas? <br>Veja os projetos abaixo rodando com <span class="azk-name">azk</span> :</h2>
+      <ul class="projects">
+        <li>
+          <a href="https://github.com/heitortsergent/evernote-sdk-js/" target="_blank">Evernote JS SDK</a> - Esta é uma aplicação básica que utiliza Node.js, Express e a SDK de javascript do Evernote que mostra o uso básico da API do Evernote.
+        </li>
+        <li>
+          <a href="https://github.com/azukiapp/meli-questions" target="_blank">Meli Questions</a> - esta é uma pequena aplicação para testar webhooks de perguntas do Mercadolivre que utiliza Node.js, Express, oAuth2, MongoDB e ngrok para redirecionar os webhooks para a aplicação.
+        </li>
+        <li>
+          <a href="https://github.com/heitortsergent/feedbin" target="_blank">Feedbin</a> - Esta é uma aplicação mais complexa que utiliza Ruby/Rails, Postgres, Redis, ElasticSearch, Memcached, Sidekiq (sistema de fila de tarefas assíncrona) e Clockwork (performa tarefas agendadas).
+        </li>
+      </ul>
+ -->

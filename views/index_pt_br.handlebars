@@ -44,20 +44,20 @@
       <p>Esperamos que você curta!</p>
 
       <!-- if database client is not present -->
-      {{#unless client}}
+      {{#unless client}} 
         <ol class="steps">
           <li><span class="step-btn step-btn--active">1. Banco de dados</span></li>
-          <li><span class="step-btn step-btn--disabled">2. Outros Comandos</span></li>
+          <li><span class="step-btn step-btn--disabled">2. Deployment</span></li>
           <!-- Load 'database' partial -->
         </ol>
-        {{> database_pt_br }}
+{{> database_pt_br }}
       {{^}}
         <ol class="steps">
           <li><span class="step-btn">✓ Banco de dados</span></li>
-          <li><span class="step-btn step-btn--active">2. Outros Comandos</span></li>
+          <li><span class="step-btn step-btn--active">2. Deployment</span></li>
           <!-- Load 'commands' partial -->
         </ol>
-        {{> commands_pt_br }}
+{{> deployment_pt_br }}
       {{/unless}}
 
       <div class="h-line"> &nbsp; </div>

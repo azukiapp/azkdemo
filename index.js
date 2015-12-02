@@ -29,7 +29,8 @@ var layout;
 
 // Route
 app.get('/', function(req, res) {
-  layout = (req.locale == 'pt_BR') ? 'index_pt_br' : 'index_en';
+  // layout = (req.locale == 'pt_BR') ? 'index_pt_br' : 'index_en';
+  layout = "index_pt_br";
 
   // fill `seq` with the container that processed the request
   azkInstanceData.seq = process.env.AZK_SEQ;
@@ -45,7 +46,7 @@ app.get('/', function(req, res) {
           client: true,
           counter: counter,
           azkData: azkInstanceData,
-          step: 'commands'
+          step: 'deployment'
         });
       })
     });
