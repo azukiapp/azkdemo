@@ -1,0 +1,80 @@
+<div class="deployment">
+<h1>Faça o deployment da aplicação</h1>
+<p>Com o <strong>azkdemo</strong> rodando com o azk, fazer o deployment para a DigitalOcean é muito simples. Basta seguir as seguintes instruções:</p>
+
+<ol>
+  <li><a href="#deployment-step-1">Configurando chaves SSH locais</a></li>
+  <li><a href="#deployment-step-2">Adicionar deploy ao Azkfile</a></li>
+  <li><a href="#deployment-step-3">Adicionar domínios a aplicação</a></li>
+  <li><a href="#deployment-step-4">Gerar Token na DigitalOcean</a></li>
+  <li><a href="#deployment-step-5">Configurar variáveis de ambiente</a></li>
+  <li><a href="#deployment-step-6">Rodar o deploy</a></li>
+</ol>
+
+<div class="h-line"> &nbsp; </div>
+
+<h2 id="deployment-step-1">1. Configurar as chaves SSH locais</h2>
+<p>O primeiro passo é configurar as chaves SSH em sua máquina. Elas vão ser úteis para fazermos a conexão ao droplet e para enviarmos os arquivos de seu projeto. Se você ainda não tem chaves SSH criadas em sua máquina (ou não tem certeza sobre isso), siga os passos 1 e 2 <a href="https://help.github.com/articles/generating-ssh-keys/" target="_blank">deste tutorial</a>.</p>
+
+<div class="h-line"> &nbsp; </div>
+
+<h2 id="deployment-step-2">2. Adicionar o sistema deploy ao Azkfile</h2>
+
+<p>Adicione o seguinte trecho ao Azkfile (em seguida do fechamento do sistema <strong>redis</strong>):</p>
+
+<pre><code> systems({
+    // ...
+
+    deploy: {
+      image: {"docker": "azukiapp/deploy-digitalocean"},
+      mounts: {
+        "/azk/deploy/src" :    path("."),
+        "/azk/deploy/.ssh":    path("#{env.HOME}/.ssh"),
+        "/azk/deploy/.config": persistent("deploy-config"),
+      },
+      scalable: {"default": 0, "limit": 0},
+    },
+    envs: {
+      // Adicione aqui as opções de configuração do deploy
+    }
+  });
+</code></pre>
+
+<div class="h-line"> &nbsp; </div>
+
+<h2 id="deployment-step-3">3. Adicionar os endereços de acesso da aplicação</h2>
+<p>Altere a propriedade 'http.domains' do sistema <strong>azkdemo</strong> em seu Azkfile:</p>
+
+<pre><code> systems({
+    azkdemo: {
+      // ...
+      http: {
+        domains: [
+          "#{env.HOST_DOMAIN}",
+          "#{env.HOST_IP}"
+          // ...
+        ]
+      },
+    },
+
+    // ...
+  });
+</code></pre>
+
+<div class="h-line"> &nbsp; </div>
+
+<h2 id="deployment-step-4">4. Gerar um token na DigitalOcean</h2>
+<p>Obtenha uma <a href="https://cloud.digitalocean.com/settings/applications" target="_blank">chave de acesso</a> (<em>personal access token</em> - precisa estar logado) da DigitalOcean.</p>
+
+<div class="h-line"> &nbsp; </div>
+
+<h2 id="deployment-step-5">5. Configurar variáveis de ambiente</h2>
+<p>Coloque a chave obtida no passo anterior em um arquivo chamado .env:</p>
+<pre> <span class="cmd-line--symbol">$</span> echo "DEPLOY_API_TOKEN=<span class="cmd-line--option">COLOQUE-SEU-TOKEN-AQUI</span>" >> .env</pre>
+
+<div class="h-line"> &nbsp; </div>
+
+<h2 id="deployment-step-6">6. Rodar o deploy</h2>
+<pre> <span class="cmd-line--symbol">$</span> azk deploy</pre>
+
+</div>
