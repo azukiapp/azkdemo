@@ -1,7 +1,7 @@
 systems({
   azkdemo: {
     depends: ["redis"],
-    image: {"docker": "azukiapp/node:0.12"},
+    image: {"docker": "azukiapp/node:4.2.1"},
     provision: [
       "npm install",
     ],
@@ -27,8 +27,8 @@ systems({
   },
 
   redis: {
-    image: "redis",
-    command: "redis-server --appendonly yes",
+    image: "redis:3.0.6",
+    command: ["redis-server", "--appendonly", "yes"],
     mounts: {
       "/data": persistent("data"),
     },
